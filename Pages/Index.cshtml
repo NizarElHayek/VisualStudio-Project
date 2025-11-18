@@ -1,0 +1,134 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Neon Music Portal</title>
+
+    <style>
+        /* ===== Global Styling ===== */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Orbitron", Arial, sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            background: radial-gradient(circle at center, #180040, #000020);
+            animation: bg-move 15s infinite linear;
+        }
+
+        @@keyframes bg-move {
+            0% { background-position: 0 0; }
+            100% { background-position: 400px 400px; }
+        }
+
+        /* ===== Animated Title ===== */
+        h1 {
+            margin-top: 50px;
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #ff00ff, 0 0 25px #ff00ff;
+            animation: float 3s ease-in-out infinite, colorShift 5s linear infinite;
+        }
+
+        @@keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px) scale(1.05); }
+        }
+
+        @@keyframes colorShift {
+            0% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
+            33% { color: #00eaff; text-shadow: 0 0 10px #00eaff; }
+            66% { color: #39ff14; text-shadow: 0 0 10px #39ff14; }
+            100% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
+        }
+
+        /* ===== Video Container ===== */
+        .video-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            animation: pulseGlow 4s infinite;
+        }
+
+        @@keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px #ff00ff); }
+            50% { filter: drop-shadow(0 0 25px #00eaff); }
+        }
+
+        /* ===== Glowing Video Frame ===== */
+        iframe {
+            width: 80%;
+            max-width: 850px;
+            height: 480px;
+            border: 3px solid #fff;
+            border-radius: 15px;
+            box-shadow:
+                0 0 15px #ff00ff,
+                0 0 25px #00eaff,
+                0 0 40px #39ff14;
+            transition: transform 0.5s ease;
+        }
+
+        iframe:hover {
+            transform: scale(1.03);
+            box-shadow:
+                0 0 25px #ff00ff,
+                0 0 45px #00eaff,
+                0 0 60px #39ff14;
+        }
+
+        /* ===== Animated Neon Line Divider ===== */
+        .divider {
+            width: 80%;
+            height: 4px;
+            margin: 40px auto;
+            background: linear-gradient(90deg, #ff00ff, #00eaff, #39ff14, #ff00ff);
+            background-size: 400%;
+            animation: runLine 6s linear infinite;
+            border-radius: 50px;
+        }
+
+        @@keyframes runLine {
+            0% { background-position: 0%; }
+            100% { background-position: 400%; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="titleText">Neon Styled</h1>
+
+    <div class="divider"></div>
+
+    <div class="video-container">
+        <!-- YouTube music video (replace with your favorite link) -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/yKNxeF4KMsY?si=ctNEb2weS_dSkztf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        /* ===== Extra JS Animation Effect =====
+           Adds a continuous rotation & glow flicker to the H1 text
+        */
+
+        const title = document.getElementById("titleText");
+        let rotation = 0;
+
+        function animateTitle() {
+            rotation += 0.3;
+            title.style.transform = `rotate(${Math.sin(rotation / 15) * 3}deg)`;
+            requestAnimationFrame(animateTitle);
+        }
+
+        animateTitle();
+    </script>
+
+</body>
+</html>
